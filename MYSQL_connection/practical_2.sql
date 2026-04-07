@@ -2,17 +2,17 @@ create database practical_2;
 use practical_2;
 
 drop table customers;
-CREATE TABLE customers (
-    customer_id INT PRIMARY KEY,
-    first_name VARCHAR(20) NOT NULL,
-    last_name VARCHAR(20) NOT NULL,
-    email VARCHAR(40) UNIQUE NOT NULL,
-    registration_date date NOT NULL
+create table customers (
+    customer_id int primary key,
+    first_name varchar(20) not null,
+    last_name varchar(20) not null,
+    email varchar(40) unique not null,
+    registration_date date not null
 );
 
-INSERT INTO customers 
+insert into customers 
 (customer_id, first_name, last_name, email, registration_date) 
-VALUES
+values
 (1, "Brijesh", "Ranpariya", "brij@gmail.com", '2026-01-13'),
 (2, "raj", "soni", "raj@gmail.com", '2026-02-01'),
 (3, "Ramesh", "patel", "ramesh@gmail.com", '2026-03-23');
@@ -48,9 +48,9 @@ values
 #1
 select * from customers as c inner join orders as o on o.customer_id = c.customer_id;
 
-INSERT INTO customers 
+insert into customers 
 (customer_id, first_name, last_name, email, registration_date) 
-VALUES
+values
 (4, "Prem", "Rangani", "prem@gmail.com", '2025-05-30');
 
 #2
@@ -60,11 +60,11 @@ select * from customers as c left join orders as o on o.customer_id = c.customer
 select * from customers as c right join orders as o on o.customer_id = c.customer_id;
 
 #4 
-SELECT * FROM customers
-LEFT JOIN orders ON customers.customer_id= orders.customer_id
-UNION
-SELECT * FROM customers
-RIGHT JOIN orders ON customers.customer_id= orders.customer_id;
+select * from customers
+left join orders on customers.customer_id= orders.customer_id
+union
+select * from customers
+right join orders on customers.customer_id= orders.customer_id;
 
 
 #5
@@ -111,12 +111,12 @@ case
 end;
 
 #17
-SELECT 
+select 
     employee_id,
     salary,
-    CASE
-        WHEN salary >= 80000 THEN 'High'
-        WHEN salary >= 50000 THEN 'Medium'
-        ELSE 'Low'
-    END AS salary_grade
-FROM employees;
+    case
+        when salary >= 80000 then 'High'
+        when salary >= 50000 then 'Medium'
+        else 'Low'
+    end as salary_grade
+from employees;
