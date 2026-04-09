@@ -27,9 +27,11 @@ insert into departments (department_id ,department_name) values
 create table courses(
 course_id int primary key,
 course_name varchar(20) not null,
-department_id int references departments(department_id),
+department_id int,
+foreign key(department_id) references departments(department_id),
 credits int not null default 1
 );
+
 insert into courses (course_id ,course_name,department_id,credits) values 
 (101,'Introduction to SQL',1,3),
 (102,'Data structures',2,4);
@@ -39,7 +41,8 @@ instructor_id int primary key,
 first_name varchar(15) not null,
 last_name varchar(15) not null,
 email varchar(30) unique not null,
-department_id int references departments(department_id)
+department_id int,
+foreign key(department_id) references departments(department_id)
 );
 insert into instructors (instructor_id, first_name ,last_name, email, department_id) values
 (1,'Alice','Johnson','alice.johnson@gmail.com',1),
@@ -47,8 +50,10 @@ insert into instructors (instructor_id, first_name ,last_name, email, department
 
 create table enrollments (
 enrollment_id int primary key,
-student_id int references students(student_id),
-course_id int references courses(course_id),
+student_id int,
+foreign key(student_id) references students(student_id),
+course_id int,
+foreign key(course_id) references courses(course_id),
 enrollment_date date not null
 );
 insert into enrollments (enrollment_id, student_id, course_id, enrollment_date) values

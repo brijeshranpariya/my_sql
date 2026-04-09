@@ -19,9 +19,18 @@ values
 
 create table orders(
 order_id int primary key,
-customer_id int references customers(customer_id) on delete cascade, 
+customer_id int 
+foreign key(customer_id) references customers(customer_id) on delete cascade, 
 order_date date NOT NULL,
 total_amount int not null
+);
+
+create table test (
+    tst_id int primary key,
+    OrderNumber int not null,
+    PersonID int,
+    order_id int ,
+    foreign key(order_id) references orders(order_id)
 );
 
 insert into orders (order_id ,customer_id, order_date, total_amount) 
